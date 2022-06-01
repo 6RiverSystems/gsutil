@@ -12,6 +12,7 @@ jobs:
       - image: cimg/node:14.17.6
     steps:
       - checkout
+      - setup_remote_docker
       - sixrs-gke/docker-login
       - sixrs-gke/run-release
       - sixrs-gke/build-and-publish:
@@ -22,6 +23,7 @@ jobs:
       - image: cimg/node:14.17.6
     steps:
       - checkout
+      - setup_remote_docker
       - sixrs-gke/docker-login
       - sixrs-gke/run-release
       - sixrs-gke/build-and-publish:
