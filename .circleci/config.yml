@@ -2,7 +2,7 @@
 version: 2.1
 
 orbs:
-  sixrs-gke: sixriversystems/sixrs-gke@3
+  sixrs-gke: sixriversystems/sixrs-gke@7
   gcp-cli: circleci/gcp-cli@2.1.0
   terraform: circleci/terraform@3.0.1
 
