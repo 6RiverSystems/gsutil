@@ -1,4 +1,4 @@
-FROM rust:latest
+FROM rust:latest AS build
 
 RUN apt update && apt upgrade -y
 RUN apt install -y g++-arm-linux-gnueabihf libc6-dev-armhf-cross
@@ -14,4 +14,10 @@ ENV CARGO_TARGET_ARMV7_UNKNOWN_LINUX_GNUEABIHF_LINKER=arm-linux-gnueabihf-gcc \
     CC_armv7_unknown_linux_gnueabihf=arm-linux-gnueabihf-gcc \
     CXX_armv7_unknown_linux_gnueabihf=arm-linux-gnueabihf-g++
 
-RUN cargo build --target armv7-unknown-linux-gnueabihf
+RUN cargo build --target armv7-unknown-linux-gnueabihf --release
+
+FROM debian:latest
+
+COPY --from=build /app/target/release/gsutil /usr/local/bin/gsutil
+
+CMD ["/usr/local/bin/gsutil"]

@@ -1,4 +1,4 @@
-FROM rust:latest
+FROM rust:latest AS build
 
 RUN apt update && apt upgrade -y
 
@@ -8,4 +8,10 @@ WORKDIR /app
 
 COPY . /app
 
-RUN cargo build
+RUN cargo build --release 
+
+FROM debian:latest
+
+COPY --from=build /app/target/release/gsutil /usr/local/bin/gsutil
+
+CMD ["/usr/local/bin/gsutil"]
