@@ -16,8 +16,8 @@ ENV CARGO_TARGET_ARMV7_UNKNOWN_LINUX_GNUEABIHF_LINKER=arm-linux-gnueabihf-gcc \
 
 RUN cargo build --target armv7-unknown-linux-gnueabihf --release
 
-FROM --platform=linux/arm/v7 debian:latest
+# FROM --platform=linux/arm/v7 debian:latest
 
-COPY --from=build /app/target/release/gsutil /usr/local/bin/gsutil
+# COPY --from=build /app/target/release/gsutil /usr/local/bin/gsutil
 
-CMD ["/usr/local/bin/gsutil"]
+# CMD ["/usr/local/bin/gsutil"]
